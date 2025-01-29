@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Game Hub</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #0ff;
+            --card-bg-color: rgba(255, 255, 255, 0.05);
+            --card-border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --accent-color: #007bff;
+            --card-bg-color: #ffffff;
+            --card-border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #bb86fc;
+            --card-bg-color: #1e1e1e;
+            --card-border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .neon {
+            color: var(--text-color);
+            text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 40px var(--accent-color);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.3);
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        header nav a {
+            color: var(--accent-color);
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        header nav a:hover {
+            text-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #1f1f1f, #000);
+            color: var(--text-color);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            font-size: 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .hero .cta:hover {
+            background: #fff;
+            box-shadow: 0 0 20px var(--accent-color);
+        }
+
+        .about {
+            padding: 50px 20px;
+            background: var(--bg-color);
+        }
+
+        .about h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .branches {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #000);
+        }
+
+        .branches h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .branches .branch-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .branch-card {
+            background: var(--card-bg-color);
+            border: 1px solid var(--card-border-color);
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 0 10px var(--card-border-color);
+        }
+
+        .branch-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .branch-card p {
+            font-size: 1rem;
+        }
+
+        .branch-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-color);
+            color: var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-shadow: 0 0 8px var(--accent-color);
+        }
+        .theme-toggle {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    border: 2px solid var(--text-color);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.theme-toggle:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    text-shadow: 0 0 10px var(--text-color);
+    box-shadow: 0 0 20px var(--text-color);
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo neon">Homepage</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Games</a>
+            <a href="#">Community</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </nav>
+<button class="theme-toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
+    </header>
+
+    <section class="hero">
+        <h1 class="neon">Welcome to the Homepage</h1>
+        <p>Your ultimate destination for games and more. Explore, connect, and play!</p>
+        <a href="#" class="cta">Explore Games</a>
+    </section>
+
+    <section class="about">
+        <h2>About Us</h2>
+        <p>We are <b>Niam</b> and <b>Nooh</b>, two passionate creators driven to build an exciting community for gamers and enthusiasts alike. Neon Game Hub is more than just games — it's a connection to endless possibilities!</p>
+    </section>
+
+    <section class="branches">
+        <h2>Our Branches</h2>
+        <div class="branch-cards">
+            <div class="branch-card">
+                <img src="https://via.placeholder.com/300x150" alt="Branch 1">
+                <h3>Branch 1</h3>
+                <p>Explore the wonders of Branch 1.</p>
+            </div>
+            <div class="branch-card">
+                <img src="https://via.placeholder.com/300x150" alt="Branch 2">
+                <h3>Branch 2</h3>
+                <p>Dive into the experiences of Branch 2.</p>
+            </div>
+            <div class="branch-card">
+                <img src="https://via.placeholder.com/300x150" alt="Branch 3">
+                <h3>Branch 3</h3>
+                <p>Unleash creativity with Branch 3.</p>
+            </div>
+            <div class="branch-card">
+                <img src="https://via.placeholder.com/300x150" alt="Branch 4">
+                <h3>Branch 4</h3>
+                <p>Discover the excitement of Branch 4.</p>
+            </div>
+            <div class="branch-card">
+                <img src="https://via.placeholder.com/300x150" alt="Branch 5">
+                <h3>Branch 5</h3>
+                <p>Experience the innovations of Branch 5.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="extra-content">
+        <div style="padding: 50px 20px; background: var(--bg-color);">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 30px;">More About Our Vision</h2>
+            <p style="text-align: center; font-size: 1.2rem; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                At our game hub, we aim to bridge the gap between gamers and creators. Whether it's through engaging discussions, groundbreaking innovations, or artistic expressions, we believe in the power of community and creativity to reshape the gaming landscape. Join us on this exciting journey!
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Neon Game Hub | Created by <b>Niam</b> & <b>Nooh</b>. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.body.setAttribute('data-theme', 'dark');
+            } else if (currentTheme === 'dark') {
+                document.body.setAttribute('data-theme', '');
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+            }
+        }
+    </script>
+</body>
+</html>
