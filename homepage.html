@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neon Game Hub</title>
+    <title>Homepage (Default)</title>
     <style>
         :root {
             --bg-color: #0a0a0a;
@@ -283,6 +283,12 @@
     </footer>
 
     <script>
+               window.onload = function() {
+      let newTitle = prompt("Enter a title for this webpage:");
+      if (newTitle) {
+        document.title = newTitle;
+      }
+    };
         function toggleTheme() {
             const currentTheme = document.body.getAttribute('data-theme');
             if (currentTheme === 'light') {
